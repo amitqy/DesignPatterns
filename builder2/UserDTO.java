@@ -12,6 +12,12 @@ import com.cpc.dp.builder.Address;
 //And we'll still able to create instance of this class
 //Setter methods are not visible outside this class
 //That keeps UserDTO instances immuatble
+//Even if the requirement is not to keep class immutable, still
+//this method is prefered.
+//Builder resides in the class whose object has to be built
+//Abstract builder is also not required if "product" itself is not 
+//a part of any inheritance hierarchy. You can directlty create
+//concrete builder
 public class UserDTO {
 
 	private String name;
