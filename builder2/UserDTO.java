@@ -7,6 +7,11 @@ import java.time.temporal.ChronoUnit;
 import com.cpc.dp.builder.Address;
 
 //Product class
+//We want to create objects of this class
+//We also don't have constructor, which need so much arguments
+//And we'll still able to create instance of this class
+//Setter methods are not visible outside this class
+//That keeps UserDTO instances immuatble
 public class UserDTO {
 
 	private String name;
@@ -47,7 +52,9 @@ public class UserDTO {
 	public static UserDTOBuilder getBuilder() {
 		return new UserDTOBuilder();
 	}
-	//Builder
+	//Builder is decalred as inner static class of class who instance is to be created
+	//The builder can also use private setter methods also.
+	//This way we can build instances without using a complex constructor
 	public static class UserDTOBuilder {
 		
 		private String firstName;
@@ -58,6 +65,7 @@ public class UserDTO {
 		
 		private String address;
 		
+		// instance will be build here
 		private UserDTO userDTO;
 		
 		public UserDTOBuilder withFirstName(String fname) {
@@ -83,10 +91,12 @@ public class UserDTO {
 		}
 		
 		public UserDTO build() {
+			//we are setter method on our final object
 			this.userDTO = new UserDTO();
 			userDTO.setName(firstName+" " + lastName);
 			userDTO.setAddress(address);
 			userDTO.setAge(age);
+			// we return this instance to the outside world
 			return this.userDTO;
 		}
 		
